@@ -1,0 +1,16 @@
+def main():
+    try:
+        
+        input_filename = input("Enter the name of the file to read: ")
+        
+    
+        with open(input_filename, 'r') as infile:
+            content = infile.read()
+        
+        
+        modified_content = content.upper()
+        
+    except FileNotFoundError:
+        print("The file was not found. Please check the filename and try again.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
