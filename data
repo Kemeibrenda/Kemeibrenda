@@ -1,0 +1,62 @@
+import pandas as pd
+
+
+try:
+    data = pd.read_csv('your_dataset.csv')
+    print("Dataset loaded successfully!")
+except FileNotFoundError:
+    print("Error: File not found. Please check your file path.")
+
+
+print(data.head())
+
+
+print(data.info())
+
+
+missing_values = data.isnull().sum()
+print("Missing values in each column:\n", missing_values)
+
+
+data = data.fillna(0) 
+print("Missing values handled!")
+
+print("Summary statistics:\n", data.describe())
+
+
+grouped_data = data.groupby('category_column')['numeric_column'].mean()
+print("Mean of numeric_column by category:\n", grouped_data)
+
+
+if 'numeric_column' in data.columns:
+    print(f"Max value in numeric_column: {data['numeric_column'].max()}")
+    print(f"Min value in numeric_column: {data['numeric_column'].min()}")
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+
+data.plot(x='date_column', y='sales_column', kind='line', title="Sales Over Time")
+plt.xlabel("Date")
+plt.ylabel("Sales")
+plt.show()
+
+
+data.groupby('category_column')['numeric_column'].mean().plot(kind='bar', title="Average Value by Category")
+plt.xlabel("Category")
+plt.ylabel("Average Value")
+plt.show()
+
+
+data['numeric_column'].plot(kind='hist', bins=20, title="Distribution of Numeric Column")
+plt.xlabel("Value")
+plt.show()
+
+t
+plt.scatter(data['column_x'], data['column_y'], alpha=0.7)
+plt.title("Scatter Plot of Column X vs Column Y")
+plt.xlabel("Column X")
+plt.ylabel("Column Y")
+plt.show()
+sns.barplot(data=data, x='category_column', y='numeric_column')
+plt.title("Bar Chart with Seaborn")
+plt.show()
