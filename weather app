@@ -1,0 +1,38 @@
+import requests
+
+def get_weather(city):
+    api_key = "YOUR_API_KEY"  # Replace with your OpenWeatherMap API key
+    base_url = "http://api.openweathermap.org/data/2.5/weather"
+    params = {"q": city, "appid": api_key, "units": "metric"}  # Units in Celsius
+    response = requests.get(base_url, params=params)
+
+    if response.status_code == 200:
+        data = response.json()
+        city_name = data["name"]
+        temperature = data["main"]["temp"]
+        weather_description = data["weather"][0]["description"]
+        print(f"Weather in {city_name}:")
+        print(f"Temperature: {temperature}°C")
+        print(f"Description: {weather_description.capitalize()}")
+    else:
+        print(f"City not found or unable to retrieve data for {city}.")
+
+if __name__ == "__main__":
+    city = input("Enter a city name: ")
+    get_weather(city)
+# This is a sample Python script.
+
+# Press Shift+F10 to execute it or replace it with your code.
+# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+
+
+def print_hi(name):
+    # Use a breakpoint in the code line below to debug your script.
+    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+
+
+# Press the green button in the gutter to run the script.
+if __name__ == '__main__':
+    print_hi('PyCharm')
+
+# See PyCharm help at https://www.jetbrains.com/help/pycharm/
